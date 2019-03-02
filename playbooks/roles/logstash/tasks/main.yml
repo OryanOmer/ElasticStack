@@ -1,0 +1,30 @@
+---
+# tasks file for playbooks/roles/logstash
+- name: Copy Logstash Image to Server
+  copy:
+    src: "/opt/elk/installs/{{ logstash_image }}"
+    dest: "/opt/{{ logstash_image }}"
+
+- name: Install Logstash Image
+  apt:
+    deb: "/opt/{{ logstash_image }}"
+    state: installed
+
+- name: Genrate Jinja Template For Logstash servers
+  template:
+    src: logstash.yml.j2
+    dest: /etc/logstash/logstash.yml
+
+- name: Distrbute pipeline files
+  synchronize:
+    src: pipelines/
+    dest: /etc/logstash/conf.d/
+    recursive: yes
+
+- name: Start logstash service
+  become: logstash
+  service:
+    name: logstash
+    enabled: yes
+    state: restarted
+

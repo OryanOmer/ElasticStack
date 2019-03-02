@@ -1,0 +1,3 @@
+---
+# vars file for playbooks/roles/kibana
+kibana_image: "kibana-6.5.4-amd64.deb"

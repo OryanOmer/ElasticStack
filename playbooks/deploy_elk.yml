@@ -1,0 +1,25 @@
+---
+- hosts: elk_servers
+  become: yes
+  tags: preinstall
+  roles:
+  - preinstall
+
+- hosts: elastic_servers
+  become: yes
+  tags: elastic
+  roles:
+  - elastic
+
+- hosts: logstash_servers
+  become: yes
+  tags: logstash
+  roles:
+  - logstash
+
+- hosts: kibana_servers
+  become: yes
+  tags: kibana
+  roles:
+  - kibana
+

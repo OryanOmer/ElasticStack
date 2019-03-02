@@ -1,0 +1,42 @@
+---
+# tasks file for playbooks/roles/preinstall
+- name: Install Java
+  apt_repository:
+    repo: ppa:webupd8team/java
+    state: present
+    update_cache: yes
+    validate_certs: no
+
+- name: Copy Oracle-Java8 tar file
+  copy:
+    src: jdk-8u192-linux-x64.tar.gz
+    dest: /opt/jdk-8u192-linux-x64.tar.gz
+
+- name: mkdir java file
+  file:
+    path: /opt/java
+    state: directory
+    mode: 0777
+    owner: user
+
+- name: unarchive java in the installtion directory
+  become: yes
+  unarchive:
+    src: "/opt/jdk-8u192-linux-x64.tar.gz"
+    dest: "/opt/java"
+    remote_src: no
+  tags: archive
+
+- name: Java | Update alternatives
+  alternatives:
+    name: "{{ item }}"
+    link: "/usr/bin/{{ item }}"
+    path: "/opt/java/jdk1.8.0_192/bin/{{ item }}"
+  with_items:
+  - java
+  - javac
+  - jar
+
+
+
+

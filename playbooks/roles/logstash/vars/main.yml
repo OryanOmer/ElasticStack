@@ -1,0 +1,3 @@
+---
+# vars file for playbooks/roles/logstash
+logstash_image: logstash-6.5.4.deb

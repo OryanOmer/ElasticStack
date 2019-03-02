@@ -1,0 +1,26 @@
+---
+# tasks file for playbooks/roles/elastic
+- name: Copy Elastic Image to Server
+  copy:
+    src: "/opt/elk/installs/{{ elastic_image }}"
+    dest: "/opt/{{ elastic_image }}"
+
+- name: Install Elastic Image
+  apt:
+    deb: "/opt/{{ elastic_image }}"
+    state: installed
+
+- name: Genrate Jinja Template For Elastic servers
+  template:
+    src: elasticsearch.yml.j2
+    dest: /etc/elasticsearch/elasticsearch.yml
+
+- name: chown logs directories for elastic user
+  shell: "mkdir /opt/elastic/logs -p | chown elasticsearch /opt/elastic/ -R"
+
+- name: Start elastic service
+  become: elasticsearch
+  service:
+    name: elasticsearch
+    state: restarted
+

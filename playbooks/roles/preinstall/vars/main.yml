@@ -1,0 +1,6 @@
+---
+# vars file for playbooks/roles/preinstall
+download_url: "https://download.oracle.com/otn-pub/java/jdk/8u191-b12-demos/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64-demos.tar.gz"
+download_folder: /opt
+java_name: "{{download_folder}}/jdk1.8.0_05"
+java_archive: "{{download_folder}}/jdk-8u5-linux-x64.tar.gz"

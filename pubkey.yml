@@ -1,0 +1,61 @@
+---
+- hosts: all
+  vars:
+    username: "user"
+    ansible_ssh_user: vagrant
+    ansible_ssh_pass: vagrant
+    ansible_sudo_user: vagrant
+  become: yes
+  tasks:
+  - name: ensure python is installed
+    apt:
+      name: python
+      state: present
+
+  - name: Create  User
+    user:
+      name: "{{ username }}"
+      comment: "{{ username }}"
+      shell: /bin/bash
+      groups: sudo
+      append: yes
+      ## run command 'mkpasswd --method=sha-512' to create your own encrypted password ##
+      password: $6$8pwTAqXac2r$Noi1EUOz2PwGg4LIPVNfqFeFTPMKGTBfpZj.GxWfQrMVuJemd1dhl7VUwfc6hGtqDthlo4./vaw7cygje5Qqe.
+      ssh_key_type: rsa
+    tags: user
+
+  - name: Grant Permission to .ssh directory on users
+    file:
+      path: "{{ item }}/.ssh"
+      recurse: yes
+      mode: 0777
+    with_items:
+    - "/home/user"
+    - "/root"
+
+  - name: Genrate Keys for user"
+    shell: ssh-keygen -t rsa -b 4096 -C "xxx" -f "/home/user/.ssh/id_rsa" -q -N ""
+    become: user
+    when: ansible_hostname == "elk-node1"
+
+  - name: "Genrate Keys for root user"
+    shell:  ssh-keygen -t rsa -b 4096 -C "xxx" -f "/root/.ssh/id_rsa" -q -N ""
+    when: ansible_hostname == "elk-node-1"
+
+
+  - name: Enable sudo without password
+    lineinfile:
+      path: /etc/sudoers
+      state: present
+      line: "{{ username }} ALL=(ALL) NOPASSWD:ALL"
+    tags: sudo
+
+  - name: Set Authorized Keys For users
+    authorized_key:
+      user: "{{ item.user }}"
+      state: present
+      key: "{{ lookup('file', '{{ item.file }}/.ssh/id_rsa.pub') }}"
+    tags: keys
+    with_items:
+    -  {user: "{{ username }}", file: "/home/user" }
+    -  {user: "root", file: "/root" }

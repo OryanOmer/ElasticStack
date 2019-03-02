@@ -1,0 +1,24 @@
+---
+# tasks file for playbooks/roles/kibana
+- name: Copy kibana Image to Server
+  copy:
+    src: "/opt/elk/installs/{{ kibana_image }}"
+    dest: "/opt/{{ kibana_image }}"
+
+- name: Install kibana Image
+  apt:
+    deb: "/opt/{{ kibana_image }}"
+    state: installed
+
+- name: Genrate Jinja Template For kibana servers
+  template:
+    src: kibana.yml.j2
+    dest: /etc/kibana/config/kibana.yml
+
+- name: Start kibana service
+  become: kibana
+  service:
+    name: kibana
+    enabled: yes
+    state: restarted
+

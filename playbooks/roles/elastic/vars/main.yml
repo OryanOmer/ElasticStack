@@ -1,0 +1,6 @@
+---
+# vars file for playbooks/roles/elastic
+elastic_logs_path:  "/opt/elastic/logs"
+elastic_data_path: "/var/lib/elasticsearch/"
+cluster_name: "xxx_cluster"
+elastic_image: "elasticsearch-6.5.4.deb"

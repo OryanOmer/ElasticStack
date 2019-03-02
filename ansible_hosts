@@ -1,0 +1,24 @@
+
+[elastic_master_servers]
+elk-node1 node_type=master
+
+[elastic_data_servers]
+elk-node2 node_type=data
+elk-node3 node_type=data
+
+[elastic_servers:children]
+elastic_master_servers
+elastic_data_servers
+
+[kibana_servers]
+elk-node4
+elk-node5
+
+
+[logstash_servers]
+elk-node5
+
+[elk_servers:children]
+elastic_servers
+kibana_servers
+logstash_servers
