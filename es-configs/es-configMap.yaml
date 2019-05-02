@@ -43,6 +43,3 @@ data:
     node.data:  "false"
     node.ingest: "true"
     node.master: "false"
-
-    
-
