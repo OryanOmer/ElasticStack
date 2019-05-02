@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: es-config
+    namespace: elasticsearch
+data:
+  elasticsearch-data.yml: |
+    cluster.name: es-oryan
+    node.name: ${HOSTNAME}
+    network.host: 0.0.0.0
+    bootstrap.memory_lock: false
+    discovery.zen.minimum_master_nodes: 2
+    discovery.zen.ping.unicast.hosts: ["es-master-1", "es-master-2", "es-master-0"]
+    xpack.security.enabled: false
+    xpack.monitoring.enabled: true
+    http.port: "9200"
+    node.data:  "true"
+    node.ingest: "false"
+    node.master: "false"
+  elasticsearch-master.yml: |
+    cluster.name: es-oryan
+    node.name: ${HOSTNAME}
+    network.host: 0.0.0.0
+    bootstrap.memory_lock: false
+    discovery.zen.ping.unicast.hosts: ["es-master-1", "es-master-2", "es-master-0"]
+    xpack.security.enabled: false
+    xpack.monitoring.enabled: true
+    http.port: "9200"
+    discovery.zen.minimum_master_nodes: "2"
+    node.data:  "false"
+    node.ingest: "false"
+    node.master: "true"
+  elasticsearch-client.yml: |
+    cluster.name: es-oryan
+    node.name: ${HOSTNAME}
+    network.host: 0.0.0.0
+    bootstrap.memory_lock: false
+    discovery.zen.minimum_master_nodes: 2
+    discovery.zen.ping.unicast.hosts: ["es-master-1", "es-master-2", "es-master-0"]
+    xpack.security.enabled: false
+    xpack.monitoring.enabled: true
+    http.port: "9200"
+    node.data:  "false"
+    node.ingest: "true"
+    node.master: "false"
+
+    
+
