@@ -5,9 +5,13 @@ kind: Service
 metadata:
   name: es-master
   namespace: elasticsearch
+  labels:
+    role: master
+    app: elasticsearch
 spec:
   selector:
-    app: es-master
+    app: elasticsearch
+    role: master
   clusterIP: None
   ports:
   - port: 9300
@@ -20,18 +24,24 @@ kind: StatefulSet
 metadata:
   name: es-master
   namespace: elasticsearch
+  labels:
+    app: elasticsearch
+    role: master
 spec:
   selector:
     matchLabels:
-      app: es-master
+      app: elasticsearch
+      role: master
   serviceName: es-master
   updateStrategy:
     type: RollingUpdate
   replicas: 3
   template:
     metadata:
+      name: es-master
       labels: 
-        app: es-master
+        app: elasticsearch
+        role: master
     spec:
       terminationGracePeriodSeconds: 0
       initContainers: #init containers for disable swap and change max map count and increase
