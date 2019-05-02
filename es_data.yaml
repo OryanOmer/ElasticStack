@@ -1,0 +1,87 @@
+#Headleass Service
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: elasticsearch
+  name: es-data
+  labels:
+    app: elasticsearch
+    role: data
+spec:
+  clusterIP: None
+  selector:
+    app: elasticsearch
+    role: data
+  ports:
+    - port: 9200
+      name: http
+    - port: 9300
+      name: node-to-node
+
+---
+#es-data Statefulset
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: es-data
+  namespace: elasticsearch
+  labels:
+    app: elasticsearch
+    role: data
+spec:
+  selector:
+    matchLabels:
+      app: elasticsearch
+      role: data
+  serviceName: es-data
+  updateStrategy:
+    type: RollingUpdate
+  replicas: 3
+  template:
+    metadata:
+      name: es-data
+      namespace: elasticsearch
+      labels: 
+        app: elasticsearch
+        role: data
+    spec:
+      terminationGracePeriodSeconds: 0
+      initContainers: #init containers for disable swap and change max map count and increase
+      - name: init-sysctl #change sysctl
+        image: busybox
+        command:
+        - sysctl
+        - -w
+        - vm.max_map_count=262144
+        securityContext:
+          privileged: true
+      - name: increase-the-ulimit
+        image: busybox
+        command:
+        - sh
+        - -c
+        - ulimit -n 65536
+        securityContext:
+          privileged: true
+      containers: #define elasticsearch container 
+      - name: es-data
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.0.0
+        ports:
+        - containerPort: 9300
+          name: node-to-node
+        - containerPort: 9200
+          name: http
+        volumeMounts:
+        - name: es-config
+          mountPath: /usr/share/elasticsearch/config/elasticsearch.yml
+          subPath: elasticsearch.yml
+      volumes:
+        - name: es-config
+          configMap:
+            name: es-config
+            items:
+              - key: elasticsearch-data.yml
+                path: elasticsearch.yml
