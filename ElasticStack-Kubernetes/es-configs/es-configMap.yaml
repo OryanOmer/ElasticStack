@@ -6,7 +6,7 @@ metadata:
 data:
   elasticsearch-data.yml: |
     cluster.name: es-oryan
-    node.name: ${HOSTNAME}
+    node.name: ${HOSTNAME}.es-data
     network.host: 0.0.0.0
     bootstrap.memory_lock: false
     discovery.zen.minimum_master_nodes: 2
@@ -19,7 +19,7 @@ data:
     node.master: "false"
   elasticsearch-master.yml: |
     cluster.name: es-oryan
-    node.name: ${HOSTNAME}
+    node.name: ${HOSTNAME}.es-master
     network.host: 0.0.0.0
     bootstrap.memory_lock: false
     discovery.zen.ping.unicast.hosts: ["es-master-1.es-master.elasticsearch.svc.cluster.local", "es-master-2.es-master.elasticsearch.svc.cluster.local", "es-master-0.es-master.elasticsearch.svc.cluster.local"]
@@ -32,7 +32,7 @@ data:
     node.master: "true"
   elasticsearch-client.yml: |
     cluster.name: es-oryan
-    node.name: ${HOSTNAME}
+    node.name: ${HOSTNAME}.es-client
     network.host: 0.0.0.0
     bootstrap.memory_lock: false
     discovery.zen.minimum_master_nodes: 2
