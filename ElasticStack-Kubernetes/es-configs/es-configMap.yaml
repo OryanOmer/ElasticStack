@@ -21,15 +21,15 @@ data:
     cluster.name: es-oryan
     node.name: ${HOSTNAME}.es-master
     network.host: 0.0.0.0
-    bootstrap.memory_lock: false
-    discovery.zen.ping.unicast.hosts: ["es-master-1.es-master.elasticsearch.svc.cluster.local", "es-master-2.es-master.elasticsearch.svc.cluster.local", "es-master-0.es-master.elasticsearch.svc.cluster.local"]
+    bootstrap.memory_lock: true
+    discovery.zen.ping.unicast.hosts: ["es-master-1.es-master", "es-master-2.es-master", "es-master-0.es-master"]
     xpack.security.enabled: false
     xpack.monitoring.enabled: true
-    http.port: "9200"
-    discovery.zen.minimum_master_nodes: "2"
-    node.data:  "false"
-    node.ingest: "false"
-    node.master: "true"
+    http.port: 9200
+    discovery.zen.minimum_master_nodes: 2
+    node.data:  false
+    node.ingest: false
+    node.master: true
   elasticsearch-client.yml: |
     cluster.name: es-oryan
     node.name: ${HOSTNAME}.es-client
