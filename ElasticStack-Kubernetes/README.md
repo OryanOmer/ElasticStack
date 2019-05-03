@@ -1,4 +1,4 @@
-# Deploy Elasic Stack on Kubernetes Cluster
+# Deploy Elastic Stack on Kubernetes Cluster
 
 # Inststruction:
 * First, we will deploy isolated namespace for our Elastic     Stack using the command:
