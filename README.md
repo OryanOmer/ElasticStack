@@ -1,4 +1,4 @@
-#ElasticStack
+# ElasticStack
 ## In This Repo, you will have three different Platform to deploy Elastic Stack at your environment
 
 > The first is deploying Elastic stack on VMS.
