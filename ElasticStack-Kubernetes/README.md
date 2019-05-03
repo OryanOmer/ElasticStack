@@ -8,7 +8,7 @@
 
 * Second, we wiil deploy configMap for our Elastic Stack       environment(If you want to change params for the elastic,    for example: JVM OPS,elastic data path..etc) you can do      that there, but be careful and keep on alliigemnt cross al   the nodes.
 
-> After finishing edit the configMap.yaml, deploy the          configMap by the command:
+  After finishing edit the configMap.yaml, deploy the        configMap by the command:
 
     ``` bash
     kubectl apply -f es-configs\es-configMap.yaml
