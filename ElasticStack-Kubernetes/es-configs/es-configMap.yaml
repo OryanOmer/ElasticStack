@@ -21,7 +21,6 @@ data:
     cluster.name: es-oryan
     node.name: ${HOSTNAME}.es-master
     network.host: 0.0.0.0
-    bootstrap.memory_lock: false
     cluster.initial_master_nodes:
       - "es-master-1.es-master"
       - "es-master-2.es-master"
