@@ -2,8 +2,6 @@
 
 ### In This Repo, you will have three different Platform to deploy Elastic Sta£ck at your environment
 
-![Elastic Image](https://miro.medium.com/max/892/1*AYP0Mg_MwJMm3Kbx8Xa8lQ.png)
-
 * The first is deploying Elastic stack on VMS.
 The deployment process is done by Ansible playbooks.
 
@@ -14,3 +12,6 @@ The deployment process is done by Ansible playbooks.
 ### Each option has is own description and deployment process in his folder.
 
 > I will happy to get feedback!.    
+
+
+![Elastic Image](https://miro.medium.com/max/892/1*AYP0Mg_MwJMm3Kbx8Xa8lQ.png)
