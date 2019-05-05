@@ -5,8 +5,8 @@
 
  * Clone the repository to your server.
   ``` bash
-    git clone https://github.com/OryanOmer/ElasticStack.git && cd ./ElasticStack/ElasticStack-Kubernetes
-  ``` bash
+    git clone https://github.com/OryanOmer/ElasticStack.git && cd ./ElasticStack/ElasticStack-Kubernetes.
+  ```
 
 
 ### Instructions:
