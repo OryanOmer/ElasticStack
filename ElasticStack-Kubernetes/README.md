@@ -1,7 +1,7 @@
 # Deploy Elastic Stack on Kubernetes Cluster
 
 Here is an image of the arcitecture of the elastic stack:
-![alt text](https://github.com/OryanOmer/ElasticStack/blob/master/elastic_stack.PNG)
+![ElasticStack](https://github.com/OryanOmer/ElasticStack/blob/master/ElasticStack-Kubernetes/elastic_stack.PNG)
 
 ### Prerequisites:
  * Kuberntes up and running, supported at 1.13+.
