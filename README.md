@@ -1,4 +1,7 @@
 # ElasticStack
+![Elastic Image](https://miro.medium.com/max/892/1*AYP0Mg_MwJMm3Kbx8Xa8lQ.png)
+
+
 ## In This Repo, you will have three different Platform to deploy Elastic Stack at your environment
 
 * The first is deploying Elastic stack on VMS.
