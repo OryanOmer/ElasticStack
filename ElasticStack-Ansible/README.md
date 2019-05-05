@@ -6,4 +6,4 @@
       ansible-playbook -i <your inventory> pubkey.yaml
   ```
 
-* second, we will deploy 
+* second, we will deploy the elastic 
