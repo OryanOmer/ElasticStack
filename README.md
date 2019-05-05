@@ -9,7 +9,7 @@ The deployment process is done by Ansible playbooks.
 
 * The third is deploying Elastic Stack on Kubernetes.
 
-### Each option has is own description and deployment process in his folder.
+### Each option has is own description and deployment process in his folder. 
 
 > I will happy to get feedback!.    
 
