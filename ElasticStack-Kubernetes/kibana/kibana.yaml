@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: kibana
-        image: docker.elastic.co/kibana/kibana-oss:7.0.0
+        image: ocker.elastic.co/kibana/kibana:7.0.0
         ports:
         - containerPort: 5601
         volumeMounts:

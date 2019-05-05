@@ -8,7 +8,6 @@ metadata:
     role: kibana
 data:
   kibana.yml: |
-    server:
-      name: "kibana"
-      port: 5601
-    elasticsearch.url: "http://es-master:9200"
+    server.port: "kibana:5601"
+    server.name: "kibana"
+    elasticsearch.url: "http://es-client:9200"
