@@ -1,13 +1,13 @@
 # Deploy Elastic Stack on Kubernetes Cluster
 
-Here is an image of the arcitecture of the elastic stack:
+Here is an image of the architecture of the elastic stack:
 ![ElasticStack](https://github.com/OryanOmer/ElasticStack/blob/master/ElasticStack-Kubernetes/elastic_stack.PNG)
 
-### Quick brief about the arcitecture:
+### Quick brief about the architecture:
 * Master Nodes - responsible for managing the cluster state and health.
 * Data Nodes- responsible keeps the data and perform data related operations such as CRUD, search, and aggregations.
 * Client Nodes- Also called “coordinating node”, responsible for client requests and query data from the cluster.
-
+* Kibana -Kibana lets you visualize your Elasticsearch data and navigate the Elastic Stack.
 ### Prerequisites:
  * Kuberntes up and running, supported at 1.13+.
 
