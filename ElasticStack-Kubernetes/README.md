@@ -2,7 +2,7 @@
 
 ### Prerequisites:
  * Kuberntes up and running.
- 
+
  * Clone the repository to your server.
   ``` bash
     git clone https://github.com/OryanOmer/ElasticStack.git && cd ./ElasticStack/ElasticStack-Kubernetes
@@ -38,9 +38,11 @@
 * Five, we wiil deploy the elastic proxy containers to         listen for client requests by the command:
    ``` bash
     kubectl apply -f es-client\es-client.yaml
+    kubectl apply -f es-client\es-client-service.yaml
     ```
   the proxy conatiners is done by replicaSet of 3 containers.
 * At the end, we will deploy the kibana to access the elastic cluster via UI.
   ``` bash
     kubectl apply -f kibana\kibana.yaml
+    kubectl apply -f kibana\kibana-service.yaml
   ```

@@ -18,7 +18,7 @@ spec:
     targetPort: 9300
 
 ---
-#es-client Statefulset
+#es-client Deployment
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:

@@ -1,0 +1,15 @@
+version: v1
+kind: Service
+metadata:
+  name: elasticsearch
+  labels:
+    role: es-client
+    app: elasticsearch
+spec:
+  selector:
+    role: es-client
+    app: elasticsearch
+  type: NodePort
+  ports:
+  - port: 9200
+    targetPort: 9200
