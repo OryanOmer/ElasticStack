@@ -2,6 +2,7 @@ version: v1
 kind: Service
 metadata:
   name: elasticsearch
+  namespace: elasticsearch
   labels:
     role: client
     app: elasticsearch

@@ -32,27 +32,17 @@ spec:
     matchLabels:
       app: elasticsearch
       role: client
-  serviceName: es-client
-  updateStrategy:
-    type: RollingUpdate
   replicas: 3
   template:
     metadata:
       name: es-client
+      namespace: elasticsearch
       labels: 
         app: elasticsearch
         role: client
     spec:
       terminationGracePeriodSeconds: 0
       initContainers: #init containers for disable swap and change max map count and increase
-      - name: fix-permissions
-        image: busybox
-        command: ["sh", "-c", "chown -R 1000:1000 /usr/share/elasticsearch/data"]
-        securityContext:
-          privileged: true
-        volumeMounts:
-        - name: data
-          mountPath: /usr/share/elasticsearch/data
       - name: init-sysctl #change sysctl
         image: busybox
         command:

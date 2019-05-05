@@ -45,14 +45,6 @@ spec:
     spec:
       terminationGracePeriodSeconds: 0
       initContainers: #init containers for disable swap and change max map count and increase
-      - name: fix-permissions
-        image: busybox
-        command: ["sh", "-c", "chown -R 1000:1000 /usr/share/elasticsearch/data"]
-        securityContext:
-          privileged: true
-        volumeMounts:
-        - name: data
-          mountPath: /usr/share/elasticsearch/data
       - name: init-sysctl #change sysctl
         image: busybox
         command:
