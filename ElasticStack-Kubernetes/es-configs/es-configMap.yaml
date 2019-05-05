@@ -47,3 +47,9 @@ data:
     node.data:  "false"
     node.ingest: "true"
     node.master: "false"
+  ES_JAVA_OPTS: "-Xms256m -Xmx256m"
+  es_image: "docker.elastic.co/elasticsearch/elasticsearch:7.0.0"
+
+
+    
+    

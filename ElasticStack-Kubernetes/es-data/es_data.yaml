@@ -75,7 +75,13 @@ spec:
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
-        image: docker.elastic.co/elasticsearch/elasticsearch:6.5.2
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.0.0
+        env:
+          - name: ES_JAVA_OPTS
+            valueFrom:
+              configMapKeyRef:
+                name: es-config
+                key: ES_JAVA_OPTS
         ports:
         - containerPort: 9300
           name: node-to-node

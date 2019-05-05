@@ -1,7 +1,7 @@
 # Deploy Elastic Stack on Kubernetes Cluster
 
 ### Prerequisites:
- * Kuberntes up and running.
+ * Kuberntes up and running, supported at 1.13+.
 
  * Clone the repository to your server.
   ``` bash
@@ -40,9 +40,14 @@
     kubectl apply -f es-client\es-client.yaml
     kubectl apply -f es-client\es-client-service.yaml
     ```
-  the proxy conatiners is done by replicaSet of 3 containers.
+  the proxy conatiners is done by replicaSet of 3 containers with NodePort service for client access.
+
 * At the end, we will deploy the kibana to access the elastic cluster via UI.
+  You can edit the kibana.yaml in the kibana-configMap.yaml as you want.
   ``` bash
+    kubectl apply -f kibana\kibana-configMap.yaml
     kubectl apply -f kibana\kibana.yaml
     kubectl apply -f kibana\kibana-service.yaml
   ```
+  The kibana containers is done by replicaSet of 3 containers with NodePort Service.
+  
