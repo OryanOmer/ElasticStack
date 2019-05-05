@@ -13,7 +13,7 @@ Here is an image of the arcitecture of the elastic stack:
 
  * Clone the repository to your server.
   ``` bash
-    git clone https://github.com/OryanOmer/ElasticStack.git && cd ./ElasticStack/ElasticStack-Kubernetes.
+    git clone https://github.com/OryanOmer/ElasticStack.git && cd ./ElasticStack/ElasticStack-Kubernetes
   ```
 
 
@@ -59,3 +59,20 @@ Here is an image of the arcitecture of the elastic stack:
   ```
   The kibana containers is done by replicaSet of 3 containers with NodePort Service.
   
+
+### Purge the cluster by the command:
+  ``` bash
+    kubectl delete -f kibana/kibana-service.yaml
+    kubectl delete -f kibana/kibana.yaml
+    kubectl delete -f kibana/kibana-configMap.yaml
+    kubectl delete -f es-client/es-client-service.yaml
+    kubectl delete -f es-client/es-client.yaml
+    kubectl delete -f es-data/es-data.yaml
+    kubectl delete -f es-master/es-master.yaml
+    kubectl delete -f es-configs/es-configMap.yaml
+    kubectl delete -f es-namespace/namespace.yaml
+  ``` 
+
+
+
+
