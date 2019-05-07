@@ -1,4 +1,5 @@
 # Deploy Elastic Stack on Kubernetes Cluster
+This Guide will helps you deploy Elastic Stack on every Kubernetes cluster: eks, gke ,rancher and kops.             ![E&K] (https://anchormen.nl/wp-content/uploads/2017/12/elasticsearch-on-kubernetes.jpg)
 
 Here is an image of the architecture of the elastic stack:
 ![ElasticStack](https://github.com/OryanOmer/ElasticStack/blob/master/ElasticStack-Kubernetes/elastic_stack.PNG)
@@ -37,18 +38,18 @@ Here is an image of the architecture of the elastic stack:
     ```
   the master containers are statefulSet with headless-service.
 
-* Four, we wiil deploy the elastic data containers by the      command:
+* Four, we will deploy the elastic data containers by the      command:
    ``` bash
     kubectl apply -f es-data/es-data.yaml
     ```
   the data containers are statefulSet with headless-service.
 
-* Five, we wiil deploy the elastic proxy containers to         listen for client requests by the command:
+* Five, we will deploy the elastic proxy containers to         listen for client requests by the command:
    ``` bash
     kubectl apply -f es-client/es-client.yaml
     kubectl apply -f es-client/es-client-service.yaml
     ```
-  the proxy conatiners is done by replicaSet of 3 containers with NodePort service for client access.
+  the proxy containers are done by replicaSet of 3 containers with NodePort service for client access.
 
 * At the end, we will deploy the kibana to access the elastic cluster via UI.
   You can edit the kibana.yaml in the kibana-configMap.yaml as you want.
@@ -57,7 +58,7 @@ Here is an image of the architecture of the elastic stack:
     kubectl apply -f kibana/kibana.yaml
     kubectl apply -f kibana/kibana-service.yaml
   ```
-  The kibana containers is done by replicaSet of 3 containers with NodePort Service.
+  The kibana containers are done by replicaSet of 3 containers with NodePort Service.
   
 
 ### Purge the cluster by the command:
