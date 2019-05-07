@@ -1,5 +1,6 @@
 # Deploy Elastic Stack on Kubernetes Cluster
-This Guide will helps you deploy Elastic Stack on every Kubernetes cluster: eks, gke ,rancher and kops.             ![E&K] (https://anchormen.nl/wp-content/uploads/2017/12/elasticsearch-on-kubernetes.jpg)
+  
+This Guide will helps you deploy Elastic Stack on every Kubernetes cluster: eks, gke, rancher and kops.
 
 Here is an image of the architecture of the elastic stack:
 ![ElasticStack](https://github.com/OryanOmer/ElasticStack/blob/master/ElasticStack-Kubernetes/elastic_stack.PNG)
@@ -74,6 +75,6 @@ Here is an image of the architecture of the elastic stack:
     kubectl delete -f es-namespace/namespace.yaml
   ``` 
 
-
+![E&K](https://anchormen.nl/wp-content/uploads/2017/12/elasticsearch-on-kubernetes.jpg)
 
 
