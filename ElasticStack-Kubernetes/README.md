@@ -1,6 +1,6 @@
 # Deploy Elastic Stack on Kubernetes Cluster
   
-This Guide will helps you deploy Elastic Stack 7.1 on every Kubernetes cluster: eks, gke, rancher and kops.
+This guide will helps you deploy Elastic Stack 7.1 on each Kubernetes cluster: eks, gke, rancher and kops.
 
 Here is an image of the architecture of the elastic stack:
 ![ElasticStack](https://github.com/OryanOmer/ElasticStack/blob/master/ElasticStack-Kubernetes/Elastic-Stack-Kubernetes.png)
@@ -67,7 +67,7 @@ Here is an image of the architecture of the elastic stack:
     kubectl apply -f es-client/es-client-service.yaml
     ```
   the proxy containers are done by replicaSet of 3 containers with NodePort service for client access.
-  
+
 * Also, there is an option to deploy HPA(Horizontal Pod      AutoScaler) for the clients nodes, the default metric is   for CPU Utilization over  80%.
   For deploy HPA on elastic client nodes press the command:
   ``` bash
