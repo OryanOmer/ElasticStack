@@ -43,18 +43,36 @@ Here is an image of the architecture of the elastic stack:
     ```
   the master containers are statefulSet with headless-service.
 
-* Four, we will deploy the elastic data containers by the      command:
+* Four,we will deploy the elastic data containers, There are 2 options for deploy data nodes:
+  1. data nodes without pvc.
+  2. data nodes with pvc.
+
+  For option one press the command:   
    ``` bash
     kubectl apply -f es-data/es-data.yaml
     ```
+  
+  For option 2, you should edit the ./es-data/es-data-pvs.yaml file and change < StorageClass > to your StorageClass.
+  After that press the command:
+  ``` bash
+     kubectl apply -f es-data/es-data-pvs.yaml
+  ```
+
+
   the data containers are statefulSet with headless-service.
 
-* Five, we will deploy the elastic proxy containers to         listen for client requests by the command:
+* Five, we will deploy the elastic proxy containers(coordinating node) to         listen for client requests by the command:
    ``` bash
     kubectl apply -f es-client/es-client.yaml
     kubectl apply -f es-client/es-client-service.yaml
     ```
   the proxy containers are done by replicaSet of 3 containers with NodePort service for client access.
+  
+* Also, there is an option to deploy HPA(Horizontal Pod      AutoScaler) for the clients nodes, the default metric is   for CPU Utilization over  80%.
+  For deploy HPA on elastic client nodes press the command:
+  ``` bash
+    kubectl apply -f es-client/es-client-hpo.yaml
+  ```
 
 * At the end, we will deploy the kibana to access the elastic cluster via UI.
   You can edit the kibana.yaml in the kibana-configMap.yaml as you want.

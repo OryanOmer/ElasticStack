@@ -1,47 +1,50 @@
 #Headleass Service
----
 apiVersion: v1
 kind: Service
 metadata:
-  name: es-client
   namespace: elasticsearch
+  name: es-data
   labels:
-    role: client
     app: elasticsearch
+    role: data
 spec:
+  clusterIP: None
   selector:
     app: elasticsearch
-    role: client
-  clusterIP: None
+    role: data
   ports:
-  - port: 9300
-    targetPort: 9300
+    - port: 9200
+      name: http
+    - port: 9300
+      name: node-to-node
 
 ---
-#es-client Deployment
-apiVersion: apps/v1beta2
-kind: Deployment
+#es-data Statefulset
+apiVersion: apps/v1
+kind: StatefulSet
 metadata:
-  name: es-client
+  name: es-data
   namespace: elasticsearch
   labels:
     app: elasticsearch
-    role: client
+    role: data
 spec:
   selector:
     matchLabels:
       app: elasticsearch
-      role: client
+      role: data
+  serviceName: es-data
+  updateStrategy:
+    type: RollingUpdate
   replicas: 3
   template:
     metadata:
-      name: es-client
+      name: es-data
       namespace: elasticsearch
       labels: 
         app: elasticsearch
-        role: client
+        role: data
     spec:
-      terminationGracePeriodSeconds: 0
       initContainers: #init containers for disable swap and change max map count and increase
       - name: init-sysctl #change sysctl
         image: busybox
@@ -60,10 +63,7 @@ spec:
         securityContext:
           privileged: true
       containers: #define elasticsearch container 
-      - name: es-client
-        resources:
-          limits:
-            cpu: 1
+      - name: es-data
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
@@ -81,18 +81,29 @@ spec:
                 key: ES_JAVA_OPTS
         ports:
         - containerPort: 9300
-          name: es-tunnel
+          name: node-to-node
         - containerPort: 9200
-          name: es-http
+          name: http
         volumeMounts:
         - name: es-config
           mountPath: /usr/share/elasticsearch/config/elasticsearch.yml
           subPath: elasticsearch.yml
+        - name: es-data
+          mountPath: /usr/share/elasticsearch/data
       volumes:
         - name: es-config
           configMap:
             name: es-config
             items:
-              - key: elasticsearch-client.yml
+              - key: elasticsearch-data.yml
                 path: elasticsearch.yml
-
+      volumeClaimTemplates:
+      - metadata:
+          name: es-data
+          namespace: elasticsearch
+        spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "<Storage Class Name>"
+      resources:
+        requests:
+          storage: 10Gi
