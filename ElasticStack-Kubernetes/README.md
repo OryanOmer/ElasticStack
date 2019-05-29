@@ -1,15 +1,19 @@
 # Deploy Elastic Stack on Kubernetes Cluster
   
-This Guide will helps you deploy Elastic Stack on every Kubernetes cluster: eks, gke, rancher and kops.
+This Guide will helps you deploy Elastic Stack 7.1 on every Kubernetes cluster: eks, gke, rancher and kops.
 
 Here is an image of the architecture of the elastic stack:
-![ElasticStack](https://github.com/OryanOmer/ElasticStack/blob/master/ElasticStack-Kubernetes/elastic_stack.PNG)
+![ElasticStack](https://github.com/OryanOmer/ElasticStack/blob/master/ElasticStack-Kubernetes/Elastic-Stack-Kubernetes.png)
 
 ### Quick brief about the architecture:
 * Master Nodes - responsible for managing the cluster state and health.
 * Data Nodes- responsible keeps the data and perform data related operations such as CRUD, search, and aggregations.
 * Client Nodes- Also called “coordinating node”, responsible for client requests and query data from the cluster.
 * Kibana -Kibana lets you visualize your Elasticsearch data and navigate the Elastic Stack.
+
+  One of the main changes at this relase is security, at this version you have the option to manage users rbac in diffrent spaces.
+  After you will bring up your Elastic stack environment and connect to the kibana, you have to provide username and password to login to the kibana, for make things easy the default username and password is elastic:password.
+
 ### Prerequisites:
  * Kuberntes up and running, supported at 1.13+.
 
@@ -60,6 +64,7 @@ Here is an image of the architecture of the elastic stack:
     kubectl apply -f kibana/kibana-service.yaml
   ```
   The kibana containers are done by replicaSet of 3 containers with NodePort Service.
+
   
 
 ### Purge the cluster by the command:
