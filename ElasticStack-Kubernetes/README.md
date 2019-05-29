@@ -57,7 +57,7 @@ Here is an image of the architecture of the elastic stack:
   ``` bash
      kubectl apply -f es-data/es-data-pvs.yaml
   ```
-
+  In addition, i added an example of *Storage Class* yaml for your convenience
 
   the data containers are statefulSet with headless-service.
 
