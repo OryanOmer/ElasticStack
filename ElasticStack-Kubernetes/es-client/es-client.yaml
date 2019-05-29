@@ -64,8 +64,13 @@ spec:
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
-        image: docker.elastic.co/elasticsearch/elasticsearch:7.0.0
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.1.0
         env:
+          - name: ELASTIC_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: es-config
+                key: ELASTIC_PASSWORD
           - name: ES_JAVA_OPTS
             valueFrom:
               configMapKeyRef:

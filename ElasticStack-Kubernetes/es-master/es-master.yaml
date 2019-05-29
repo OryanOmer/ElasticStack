@@ -44,7 +44,7 @@ spec:
         role: master
     spec:
       terminationGracePeriodSeconds: 0
-      initContainers: #init containers for disable swap and change max map count and increase
+      initContainers: #init containers for disable swap and change max map count and increase ulimit
       - name: init-sysctl #change sysctl
         image: busybox
         command:
@@ -66,14 +66,18 @@ spec:
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
-        image: docker.elastic.co/elasticsearch/elasticsearch:7.0.0
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.1.0
         env:
+          - name: ELASTIC_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: es-config
+                key: ELASTIC_PASSWORD
           - name: ES_JAVA_OPTS
             valueFrom:
               configMapKeyRef:
                 name: es-config
                 key: ES_JAVA_OPTS
-
         ports:
         - containerPort: 9300
           name: es-tunnel

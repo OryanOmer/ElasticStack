@@ -11,12 +11,15 @@ data:
     bootstrap.memory_lock: false
     discovery.zen.minimum_master_nodes: 2
     discovery.zen.ping.unicast.hosts: ["es-master-1.es-master.elasticsearch.svc.cluster.local", "es-master-2.es-master.elasticsearch.svc.cluster.local", "es-master-0.es-master.elasticsearch.svc.cluster.local"]
-    xpack.security.enabled: false
+    xpack.security.enabled: true
     xpack.monitoring.enabled: true
+    xpack.security.transport.ssl.client_authentication: optional
     http.port: "9200"
     node.data:  "true"
     node.ingest: "false"
     node.master: "false"
+    xpack.license.self_generated.type: basic
+    xpack.monitoring.elasticsearch.collection.enabled: true
   elasticsearch-master.yml: |
     cluster.name: es-oryan
     node.name: ${HOSTNAME}.es-master
@@ -27,10 +30,13 @@ data:
       - "es-master-1.es-master"
       - "es-master-2.es-master"
       - "es-master-0.es-master"
-    xpack.security.enabled: false
+    xpack.security.enabled: true
     xpack.monitoring.enabled: true
+    xpack.license.self_generated.type: basic
+    xpack.monitoring.elasticsearch.collection.enabled: true
     http.port: 9200
     discovery.zen.minimum_master_nodes: 2
+    xpack.security.transport.ssl.client_authentication: optional
     node.data:  false
     node.ingest: false
     node.master: true
@@ -41,14 +47,18 @@ data:
     bootstrap.memory_lock: false
     discovery.zen.minimum_master_nodes: 2
     discovery.zen.ping.unicast.hosts: ["es-master-1.es-master.elasticsearch.svc.cluster.local", "es-master-2.es-master.elasticsearch.svc.cluster.local", "es-master-0.es-master.elasticsearch.svc.cluster.local.es-master.elasticsearch.svc.cluster.local"]
-    xpack.security.enabled: false
+    xpack.security.enabled: true
     xpack.monitoring.enabled: true
+    xpack.license.self_generated.type: basic
+    xpack.security.transport.ssl.client_authentication: optional
+    xpack.monitoring.elasticsearch.collection.enabled: true
     http.port: "9200"
     node.data:  "false"
     node.ingest: "true"
     node.master: "false"
   ES_JAVA_OPTS: "-Xms256m -Xmx256m"
-  es_image: "docker.elastic.co/elasticsearch/elasticsearch:7.0.0"
+  ELASTIC_USERNAME: "elastic"
+  ELASTIC_PASSWORD: "password"
 
 
     

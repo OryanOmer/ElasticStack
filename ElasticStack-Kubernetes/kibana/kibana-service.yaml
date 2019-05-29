@@ -9,6 +9,7 @@ metadata:
     role: kibana
 spec:
   type: NodePort
+  sessionAffinity: ClientIP ##Ensure session won't be directed to another kibana node
   ports:
   - name: "ui"
     port: 5601
@@ -16,3 +17,4 @@ spec:
   selector:
     app: kibana
     role: kibana
+

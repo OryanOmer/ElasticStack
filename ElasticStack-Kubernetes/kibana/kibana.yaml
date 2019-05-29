@@ -1,3 +1,4 @@
+#ClusterIP
 apiVersion: v1
 kind: Service
 metadata:
@@ -13,6 +14,8 @@ spec:
     app: kibana
     role: kibana
 
+
+#Deployment For kibana- 3 Replicas
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -37,9 +40,20 @@ spec:
     spec:
       containers:
       - name: kibana
-        image: docker.elastic.co/kibana/kibana:7.0.0
+        image: docker.elastic.co/kibana/kibana:7.1.0
         ports:
         - containerPort: 5601
+        env: #add env for automatic authentication with es
+        - name: ELASTICSEARCH_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: es-config
+              key: ELASTIC_PASSWORD
+        - name: ELASTICSEARCH_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: es-config
+              key: ELASTIC_USERNAME
         volumeMounts:
         - name: config
           mountPath: /usr/share/kibana/kibana.yml
