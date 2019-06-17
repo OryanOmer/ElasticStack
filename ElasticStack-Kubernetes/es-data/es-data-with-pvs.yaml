@@ -112,7 +112,7 @@ spec:
       namespace: elasticsearch
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "gce-pd-slow"
+      storageClassName: "<Storage Class Name>"
       resources:
         requests:
           storage: 10Gi
