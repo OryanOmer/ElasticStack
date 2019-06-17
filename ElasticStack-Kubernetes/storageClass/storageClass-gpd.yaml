@@ -1,4 +1,5 @@
 ---
+# Add standard persistent disk in GKE
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
