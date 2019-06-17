@@ -45,6 +45,10 @@ spec:
         app: elasticsearch
         role: data
     spec:
+      securityContext:
+        fsGroup: 2000
+        runAsNonRoot: true
+        runAsUser: 1000
       initContainers: #init containers for disable swap and change max map count and increase
       - name: init-sysctl #change sysctl
         image: busybox
@@ -69,6 +73,11 @@ spec:
           privileged: true
         image: docker.elastic.co/elasticsearch/elasticsearch:7.1.0
         env:
+          - name: ELASTICSEARCH_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: es-config
+                key: ELASTIC_USERNAME
           - name: ELASTIC_PASSWORD
             valueFrom:
               configMapKeyRef:
@@ -97,13 +106,13 @@ spec:
             items:
               - key: elasticsearch-data.yml
                 path: elasticsearch.yml
-      volumeClaimTemplates:
-      - metadata:
-          name: es-data
-          namespace: elasticsearch
-        spec:
+  volumeClaimTemplates:
+  - metadata:
+      name: es-data
+      namespace: elasticsearch
+    spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "<Storage Class Name>"
+      storageClassName: "gce-pd-slow"
       resources:
         requests:
           storage: 10Gi

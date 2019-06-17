@@ -8,13 +8,25 @@ data:
     cluster.name: es-oryan
     node.name: ${HOSTNAME}.es-data
     network.host: 0.0.0.0
+    network.publish_host: ${HOSTNAME}.es-data
     bootstrap.memory_lock: false
     discovery.zen.minimum_master_nodes: 2
-    discovery.zen.ping.unicast.hosts: ["es-master-1.es-master.elasticsearch.svc.cluster.local", "es-master-2.es-master.elasticsearch.svc.cluster.local", "es-master-0.es-master.elasticsearch.svc.cluster.local"]
+    discovery.zen.ping.unicast.hosts: 
+      - "es-master-1.es-master"
+      - "es-master-2.es-master"
+      - "es-master-0.es-master"
+      - "es-data-1.es-data"
+      - "es-data-2.es-data"
+      - "es-data-0.es-data"
+      - "es-client-1.es-client"
+      - "es-client-2.es-client"
+      - "es-client-0.es-client"
     xpack.security.enabled: true
     xpack.monitoring.enabled: true
     xpack.security.transport.ssl.client_authentication: optional
     http.port: "9200"
+    http.cors.enabled: true
+    http.cors.allow-origin: "*"
     node.data:  "true"
     node.ingest: "false"
     node.master: "false"
@@ -24,8 +36,18 @@ data:
     cluster.name: es-oryan
     node.name: ${HOSTNAME}.es-master
     network.host: 0.0.0.0
+    network.publish_host: ${HOSTNAME}.es-master
     transport.tcp.port: 9300
-    discovery.seed_hosts: es-master
+    discovery.zen.ping.unicast.hosts: 
+      - "es-master-1.es-master"
+      - "es-master-2.es-master"
+      - "es-master-0.es-master"
+      - "es-data-1.es-data"
+      - "es-data-2.es-data"
+      - "es-data-0.es-data"
+      - "es-client-1.es-client"
+      - "es-client-2.es-client"
+      - "es-client-0.es-client"
     cluster.initial_master_nodes:
       - "es-master-1.es-master"
       - "es-master-2.es-master"
@@ -35,6 +57,8 @@ data:
     xpack.license.self_generated.type: basic
     xpack.monitoring.elasticsearch.collection.enabled: true
     http.port: 9200
+    http.cors.enabled: true
+    http.cors.allow-origin: "*"
     discovery.zen.minimum_master_nodes: 2
     xpack.security.transport.ssl.client_authentication: optional
     node.data:  false
@@ -44,15 +68,27 @@ data:
     cluster.name: es-oryan
     node.name: ${HOSTNAME}.es-client
     network.host: 0.0.0.0
+    network.publish_host: ${HOSTNAME}.es-client
     bootstrap.memory_lock: false
     discovery.zen.minimum_master_nodes: 2
-    discovery.zen.ping.unicast.hosts: ["es-master-1.es-master.elasticsearch.svc.cluster.local", "es-master-2.es-master.elasticsearch.svc.cluster.local", "es-master-0.es-master.elasticsearch.svc.cluster.local.es-master.elasticsearch.svc.cluster.local"]
+    discovery.zen.ping.unicast.hosts: 
+      - "es-master-1.es-master"
+      - "es-master-2.es-master"
+      - "es-master-0.es-master"
+      - "es-data-1.es-data"
+      - "es-data-2.es-data"
+      - "es-data-0.es-data"
+      - "es-client-1.es-client"
+      - "es-client-2.es-client"
+      - "es-client-0.es-client"
     xpack.security.enabled: true
     xpack.monitoring.enabled: true
     xpack.license.self_generated.type: basic
     xpack.security.transport.ssl.client_authentication: optional
     xpack.monitoring.elasticsearch.collection.enabled: true
     http.port: "9200"
+    http.cors.enabled: true
+    http.cors.allow-origin: "*"
     node.data:  "false"
     node.ingest: "true"
     node.master: "false"
