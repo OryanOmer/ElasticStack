@@ -13,7 +13,7 @@ data:
     server.host: 0.0.0.0
     elasticsearch.hosts: 
     - "http://es-client:9200"
-    xpack.security.enabled: true
+    # xpack.security.enabled: true
     xpack.monitoring.enabled: true
-    xpack.security.sessionTimeout: 600000 #session timeout
+    # xpack.security.sessionTimeout: 600000 #session timeout
     server.ssl.enabled: false

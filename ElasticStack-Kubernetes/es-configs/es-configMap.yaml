@@ -21,17 +21,17 @@ data:
       - "es-client-1.es-client"
       - "es-client-2.es-client"
       - "es-client-0.es-client"
-    xpack.security.enabled: true
+    # xpack.security.enabled: true
     xpack.monitoring.enabled: true
-    xpack.security.transport.ssl.client_authentication: optional
+    # xpack.security.transport.ssl.client_authentication: optional
     http.port: "9200"
     http.cors.enabled: true
     http.cors.allow-origin: "*"
     node.data:  "true"
     node.ingest: "false"
     node.master: "false"
-    xpack.license.self_generated.type: basic
-    xpack.monitoring.elasticsearch.collection.enabled: true
+    # xpack.license.self_generated.type: basic
+    # xpack.monitoring.elasticsearch.collection.enabled: true
   elasticsearch-master.yml: |
     cluster.name: es-oryan
     node.name: ${HOSTNAME}.es-master
@@ -52,15 +52,15 @@ data:
       - "es-master-1.es-master"
       - "es-master-2.es-master"
       - "es-master-0.es-master"
-    xpack.security.enabled: true
+    # xpack.security.enabled: true
     xpack.monitoring.enabled: true
-    xpack.license.self_generated.type: basic
-    xpack.monitoring.elasticsearch.collection.enabled: true
+    # xpack.license.self_generated.type: basic
+    # xpack.monitoring.elasticsearch.collection.enabled: true
     http.port: 9200
     http.cors.enabled: true
     http.cors.allow-origin: "*"
     discovery.zen.minimum_master_nodes: 2
-    xpack.security.transport.ssl.client_authentication: optional
+    # xpack.security.transport.ssl.client_authentication: optional
     node.data:  false
     node.ingest: false
     node.master: true
@@ -81,11 +81,11 @@ data:
       - "es-client-1.es-client"
       - "es-client-2.es-client"
       - "es-client-0.es-client"
-    xpack.security.enabled: true
+    # xpack.security.enabled: true
     xpack.monitoring.enabled: true
-    xpack.license.self_generated.type: basic
-    xpack.security.transport.ssl.client_authentication: optional
-    xpack.monitoring.elasticsearch.collection.enabled: true
+    # xpack.license.self_generated.type: basic
+    # xpack.security.transport.ssl.client_authentication: optional
+    # xpack.monitoring.elasticsearch.collection.enabled: true
     http.port: "9200"
     http.cors.enabled: true
     http.cors.allow-origin: "*"
