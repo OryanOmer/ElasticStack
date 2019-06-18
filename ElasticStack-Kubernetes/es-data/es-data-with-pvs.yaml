@@ -73,11 +73,6 @@ spec:
           privileged: true
         image: docker.elastic.co/elasticsearch/elasticsearch:7.1.0
         env:
-          - name: ELASTICSEARCH_USERNAME
-            valueFrom:
-              configMapKeyRef:
-                name: es-config
-                key: ELASTIC_USERNAME
           - name: ELASTIC_PASSWORD
             valueFrom:
               configMapKeyRef:

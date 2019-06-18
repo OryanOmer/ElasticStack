@@ -92,7 +92,7 @@ data:
     node.data:  "false"
     node.ingest: "true"
     node.master: "false"
-  ES_JAVA_OPTS: "-Xms256m -Xmx256m"
+  ES_JAVA_OPTS: "-Xms2048m -Xmx2048m"
   ELASTIC_USERNAME: "elastic"
   ELASTIC_PASSWORD: "password"
 

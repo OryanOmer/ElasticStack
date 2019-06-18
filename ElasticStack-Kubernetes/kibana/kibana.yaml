@@ -49,14 +49,9 @@ spec:
             configMapKeyRef:
               name: es-config
               key: ELASTIC_PASSWORD
-        - name: ELASTICSEARCH_USERNAME
-          valueFrom:
-            configMapKeyRef:
-              name: es-config
-              key: ELASTIC_USERNAME
         volumeMounts:
         - name: config
-          mountPath: /usr/share/kibana/kibana.yml
+          mountPath: /usr/share/kibana/config/kibana.yml
           subPath: kibana.yml
       restartPolicy: Always
       volumes:

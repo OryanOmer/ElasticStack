@@ -8,12 +8,12 @@ metadata:
     role: kibana
 data:
   kibana.yml: |
-    server.port: "kibana:5601"
-    server.name: "kibana"
-    elasticsearch.url: http://es-client:9200
-    xpack.security.sessionTimeout: 600000 #session timeout
-    xpack.license.self_generated.type: base #security liceance base
-    xpack.security.authProviders: [basic]
+    server.port: 5601
+    server.name: ${HOSTNAME}.kibana
+    server.host: 0.0.0.0
+    elasticsearch.hosts: 
+    - "http://es-client:9200"
     xpack.security.enabled: true
     xpack.monitoring.enabled: true
+    xpack.security.sessionTimeout: 600000 #session timeout
     server.ssl.enabled: false
