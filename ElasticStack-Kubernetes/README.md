@@ -80,6 +80,7 @@ Here is an image of the architecture of the elastic stack:
     kubectl apply -f kibana/kibana-configMap.yaml
     kubectl apply -f kibana/kibana.yaml
     kubectl apply -f kibana/kibana-service.yaml
+    kubectl apply -f kibana/kibana-ingress.yaml
   ```
   The kibana containers are done by replicaSet of 3 containers with NodePort Service.
 
