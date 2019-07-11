@@ -3,13 +3,16 @@ kind: Ingress
 metadata:
   name: kibana-ingress
   namespace: elasticsearch
+  labels:
+    role: kibana
+    app: elasticsearch
   annotations:
-    ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/affinity: cookie
 spec:
   rules:
   - http:
       paths:
         - path: /
           backend:
-            serviceName: kibana
+            serviceName: kibana-svc
             servicePort: 5601

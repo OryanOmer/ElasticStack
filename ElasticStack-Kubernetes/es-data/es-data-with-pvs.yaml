@@ -67,7 +67,7 @@ spec:
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
-        image: docker.elastic.co/elasticsearch/elasticsearch:7.1.0
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.1.1
         env:
           - name: ELASTIC_PASSWORD
             valueFrom:
@@ -97,13 +97,13 @@ spec:
             items:
               - key: elasticsearch-data.yml
                 path: elasticsearch.yml
-      volumeClaimTemplates:
-      - metadata:
-          name: es-data
-          namespace: elasticsearch
+    volumeClaimTemplates:
+    - metadata:
+        name: es-data
+        namespace: elasticsearch
         spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "<Storage Class Name>"
-      resources:
-        requests:
-          storage: 10Gi
+          accessModes: [ "ReadWriteOnce" ]
+          storageClassName: "<Storage Class Name>"
+          resources:
+            requests:
+              storage: 10Gi

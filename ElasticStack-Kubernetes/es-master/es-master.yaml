@@ -15,6 +15,7 @@ spec:
   clusterIP: None
   ports:
   - port: 9300
+    protocol: TCP
     targetPort: 9300
 
 ---
@@ -66,7 +67,7 @@ spec:
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
-        image: docker.elastic.co/elasticsearch/elasticsearch:7.1.0
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.1.1
         env:
           - name: ELASTIC_PASSWORD
             valueFrom:

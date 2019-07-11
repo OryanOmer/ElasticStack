@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: es-client
+  namespace: elasticsearch
+  labels:
+    role: es-client
+    app: elasticsearch
+type: Opaque
+data:
+  auth: cXdlMTIzCg==

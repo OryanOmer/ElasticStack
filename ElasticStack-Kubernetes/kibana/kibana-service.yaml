@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: kibana
+  name: kibana-svc
   namespace: elasticsearch
   labels:
     app: kibana

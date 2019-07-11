@@ -8,8 +8,11 @@ metadata:
     app: kibana
     role: kibana
 spec:
+  sessionAffinity: ClientIP
   ports:
-  - port: 5601
+  - name: kibana
+    port: 5601 
+    targetPort: 5601
   selector:
     app: kibana
     role: kibana
@@ -40,7 +43,7 @@ spec:
     spec:
       containers:
       - name: kibana
-        image: docker.elastic.co/kibana/kibana:7.1.0
+        image: pHrbrReg001.services.idf/gpu-elk/kibana:7.1.1
         ports:
         - containerPort: 5601
         env: #add env for automatic authentication with es

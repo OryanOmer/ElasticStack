@@ -8,35 +8,45 @@ data:
     cluster.name: es-oryan
     node.name: ${HOSTNAME}.es-data
     network.host: 0.0.0.0
+    transport.tcp.port: 9300
+    http.port: "9200"
     bootstrap.memory_lock: false
     discovery.zen.minimum_master_nodes: 2
-    discovery.zen.ping.unicast.hosts: ["es-master-1.es-master.elasticsearch.svc.cluster.local", "es-master-2.es-master.elasticsearch.svc.cluster.local", "es-master-0.es-master.elasticsearch.svc.cluster.local"]
+    discovery.zen.ping.unicast.hosts: ["es-master-1.es-master","es-master-2.es-master","es-master-0.es-master"]
     xpack.security.enabled: true
     xpack.monitoring.enabled: true
     xpack.security.transport.ssl.client_authentication: optional
-    http.port: "9200"
+    xpack.security.transport.ssl.verification_mode: none
+    xpack.license.self_generated.type: trial
+    xpack.monitoring.elasticsearch.collection.enabled: true
+    cluster.initial_master_nodes:
+      - "es-master-1.es-master"
+      - "es-master-2.es-master"
+      - "es-master-0.es-master"
+  
     node.data:  "true"
     node.ingest: "false"
     node.master: "false"
-    xpack.license.self_generated.type: basic
-    xpack.monitoring.elasticsearch.collection.enabled: true
+   
   elasticsearch-master.yml: |
     cluster.name: es-oryan
     node.name: ${HOSTNAME}.es-master
     network.host: 0.0.0.0
     transport.tcp.port: 9300
-    discovery.seed_hosts: es-master
+    http.port: "9200"
+    bootstrap.memory_lock: false
+    discovery.zen.minimum_master_nodes: 2
+    discovery.zen.ping.unicast.hosts: ["es-master-1.es-master","es-master-2.es-master","es-master-0.es-master"]
+    xpack.security.enabled: true
+    xpack.monitoring.enabled: true
+    xpack.security.transport.ssl.client_authentication: optional
+    xpack.security.transport.ssl.verification_mode: none
+    xpack.license.self_generated.type: trial
+    xpack.monitoring.elasticsearch.collection.enabled: true
     cluster.initial_master_nodes:
       - "es-master-1.es-master"
       - "es-master-2.es-master"
       - "es-master-0.es-master"
-    xpack.security.enabled: true
-    xpack.monitoring.enabled: true
-    xpack.license.self_generated.type: basic
-    xpack.monitoring.elasticsearch.collection.enabled: true
-    http.port: 9200
-    discovery.zen.minimum_master_nodes: 2
-    xpack.security.transport.ssl.client_authentication: optional
     node.data:  false
     node.ingest: false
     node.master: true
@@ -44,19 +54,26 @@ data:
     cluster.name: es-oryan
     node.name: ${HOSTNAME}.es-client
     network.host: 0.0.0.0
+    transport.tcp.port: 9300
+    http.port: "9200"
     bootstrap.memory_lock: false
     discovery.zen.minimum_master_nodes: 2
-    discovery.zen.ping.unicast.hosts: ["es-master-1.es-master.elasticsearch.svc.cluster.local", "es-master-2.es-master.elasticsearch.svc.cluster.local", "es-master-0.es-master.elasticsearch.svc.cluster.local.es-master.elasticsearch.svc.cluster.local"]
+    discovery.zen.ping.unicast.hosts: ["es-master-1.es-master","es-master-2.es-master","es-master-0.es-master"]
     xpack.security.enabled: true
     xpack.monitoring.enabled: true
-    xpack.license.self_generated.type: basic
     xpack.security.transport.ssl.client_authentication: optional
+    xpack.security.transport.ssl.verification_mode: none
+    xpack.license.self_generated.type: trial
     xpack.monitoring.elasticsearch.collection.enabled: true
-    http.port: "9200"
+    cluster.initial_master_nodes:
+      - "es-master-1.es-master"
+      - "es-master-2.es-master"
+      - "es-master-0.es-master"
     node.data:  "false"
     node.ingest: "true"
     node.master: "false"
-  ES_JAVA_OPTS: "-Xms256m -Xmx256m"
+
+  ES_JAVA_OPTS: "-Xms512m -Xmx512m"
   ELASTIC_USERNAME: "elastic"
   ELASTIC_PASSWORD: "password"
 
