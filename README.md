@@ -14,4 +14,4 @@ The deployment process is done by Ansible playbooks.
 > I will happy to get feedback!.    
 
 
-![Elastic Image](https://miro.medium.com/max/892/1*AYP0Mg_MwJMm3Kbx8Xa8lQ.png)
+![Elastic Image](https://www.itopstimes.com/wp-content/uploads/2019/01/2b6024713b7ace798502139fd5ab8fe4-490x208.png)
