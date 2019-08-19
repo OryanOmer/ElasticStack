@@ -43,7 +43,7 @@ spec:
     spec:
       containers:
       - name: kibana
-        image: pHrbrReg001.services.idf/gpu-elk/kibana:7.1.1
+        image: docker.elastic.co/kibana/kibana:7.1.1
         ports:
         - containerPort: 5601
         env: #add env for automatic authentication with es
